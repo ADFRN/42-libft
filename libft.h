@@ -6,15 +6,27 @@
 /*   By: afournie <afournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:25:43 by afournie          #+#    #+#             */
-/*   Updated: 2025/11/15 15:41:01 by afournie         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:06:12 by afournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 42
+# define FORMAT_CHAR 'c'
+# define FORMAT_STR 's'
+# define FORMAT_POINT 'p'
+# define FORMAT_DECIMAL 'd'
+# define FORMAT_INT 'i'
+# define FORMAT_UDESC 'u'
+# define FORMAT_HEXALOW 'x'
+# define FORMAT_HEXAUPP 'X'
+# define FORMAT_PERCENT '%'
 
 typedef struct s_list
 {
@@ -87,5 +99,29 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                             GET_NEXT_LINE                                  */
+/*                                                                            */
+/* ************************************************************************** */
+
+char				*get_next_line(int fd);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                 PRINTF                                     */
+/*                                                                            */
+/* ************************************************************************** */
+
+void				ft_print(const char s, va_list *arg, int *count);
+int					ft_printf(const char *s, ...);
+int					ft_is_format(const char s);
+int					ft_putnbr_hexa_low(unsigned long n);
+int					ft_putnbr_hexa_up(unsigned int n);
+int					ft_putnbr_udesc(unsigned int n);
+int					ft_print_ptr(void *adress);
+int					ft_putstr(char *s);
+int					ft_putnbr(int n);
 
 #endif
